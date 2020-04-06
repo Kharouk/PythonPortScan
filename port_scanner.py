@@ -24,6 +24,13 @@ print(f"Scanning target: {target}")
 print(f"Started at: {datetime.now()}")
 print("-" * 50)
 
-# What we want to accomplish:
-# python3 port_scanner.py <ip>
+try:
+    for port in range(21, 90):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        socket.setdefaulttimeout(1) # wait a sec and if no connection, move on.
+        result = s.connect_ex((target, port)) # returns an error indicator, if the port is open result is 0.
 
+        if result == 0:
+            print(f"The port {port} is open.")
+
+        s.close()
