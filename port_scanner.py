@@ -34,3 +34,13 @@ try:
             print(f"The port {port} is open.")
 
         s.close()
+except KeyboardInterrupt:
+    print("\n Exiting the Program.")
+    print("See you soon!")
+    sys.exit()
+except socket.gaierror:
+    print("Hostname could not be resolved.")
+    sys.exit()
+except socket.error:
+    print("Couldn't connect via socket.")
+    sys.exit()
