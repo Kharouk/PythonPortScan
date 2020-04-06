@@ -5,21 +5,30 @@ import sys
 from datetime import datetime
 
 
-def lines():
-    print("-" * 20 + "Porto" + "-" * 20)
+def lines(style="", message=""):
+    if style == "top":
+        print("-" * 20 + "Porto" + "-" * 20)
+        print(message)
+    elif style == "both":
+        print("-" * 50)
+        print(message)
+        print("-" * 50)
+    elif style == "bottom":
+        print(message)
+        print("-" * 20 + "Porto" + "-" * 20)
+    else:
+        print("-" * 50)
+
 
 
 # Define our target
 if len(sys.argv) == 2:
     try:
         target = socket.gethostbyname(sys.argv[1])
-        lines()
-        print(f"Welcome to Porto. Grab a glass whilst we see what we can get from {target}")
+        lines("top", f"Welcome to Porto. Grab a glass whilst we see what we can get from {target}")
         lines()
     except socket.gaierror:
-        lines()
-        print("Sorry, that hostname doesn't resolve to any IPv4 Address.")
-        lines()
+        lines("bottom", f"Sorry, the {target} doesn't resolve to any IPv4 Address.")
         sys.exit()
 
     # The target is the ip address (the argument we pass in)
@@ -34,10 +43,8 @@ else:
     """)
     sys.exit()
 
-lines()
 print(f"Scanning target: {target}")
 print(f"Started at: {datetime.now()}")
-lines()
 
 try:
     for port in range(19, 81):
