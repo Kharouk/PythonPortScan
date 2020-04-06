@@ -17,7 +17,12 @@ else:
     python3 port_scanner.py <ip>
     ./port_scanner.py <host_name>
     """)
+    sys.exit()
 
+print("-" * 50)
+print(f"Scanning target: {target}")
+print(f"Started at: {datetime.now()}")
+print("-" * 50)
 
 # What we want to accomplish:
 # python3 port_scanner.py <ip>
