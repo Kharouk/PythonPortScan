@@ -47,7 +47,7 @@ print(f"Scanning target: {target}")
 print(f"Started at: {datetime.now()}")
 
 try:
-    for port in range(19, 81):
+    for port in range(19, 81): # up to 65535
         # Just to note, this is a bad way of doing it, since it goes through each port slowly. This is why we look into
         # something like threading (&)
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
